@@ -1,0 +1,7 @@
+.git
+.gitignore
+README.md
+techniplast_data.db
+config.php
+config.json
+__pycache__/

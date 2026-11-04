@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  techiplast:
+    build: .
+    container_name: techiplast_app
+    ports:
+      - "8080:80"
+    volumes:
+      # Conserve la base SQLite indépendamment du conteneur
+      - ./techniplast_data.db:/var/www/html/techniplast_data.db
+    restart: always

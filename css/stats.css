@@ -1,0 +1,215 @@
+/* ============================================================
+   1. BASES ET MISE EN PAGE (ANCIEN STYLE CONSERVÉ)
+   ============================================================ */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f4f6f8; 
+    padding: 20px;
+}
+
+#stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    min-height: 450px;
+    overflow: auto;
+}
+
+h1, h2, h3 {
+    margin: 0 0 15px;
+    color: #333;
+}
+
+/* ============================================================
+   2. HEADER ET ÉTAT DU SYSTÈME
+   ============================================================ */
+#header-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.system-status {
+    padding: 8px 15px;
+    background: #e2fbe8;
+    color: #28a745;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid #28a745;
+    font-size: 0.85em;
+}
+
+/* ============================================================
+   3. FORMULAIRES ET BOUTONS
+   ============================================================ */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+input[type="number"], select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-size: 0.9em;
+}
+
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-analyze { background: #1976d2; color: white; }
+.btn-print { background: #6c757d; color: white; }
+.btn-analyze:hover { background: #1565c0; }
+
+/* Switch interactif des graphiques */
+.switch-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.btn-s {
+    font-size: 0.8em;
+    padding: 6px 14px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background: #fdfdfd;
+    transition: 0.3s;
+}
+
+.btn-s.active {
+    background: #1976d2;
+    color: white;
+    border-color: #1976d2;
+    box-shadow: 0 2px 4px rgba(0,123,255,0.3);
+}
+
+/* ============================================================
+   4. INDICATEURS DE PERFORMANCE (TRS) ET GRAPHIQUES
+   ============================================================ */
+.trs-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    display: block;
+    margin: 10px 0;
+}
+
+.chart-box {
+    height: 320px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.hidden { display: none !important; }
+
+/* ============================================================
+   5. TABLEAUX ET CLASSEMENT (PARETO)
+   ============================================================ */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    font-size: 15px;
+}
+
+td {
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+/* Badge de rang Podium */
+.rank-badge {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    background: #eee;
+}
+
+tr:nth-child(1) .rank-badge { background: #FFD700; color: #856404; }
+tr:nth-child(2) .rank-badge { background: #C0C0C0; color: #444; }
+tr:nth-child(3) .rank-badge { background: #CD7F32; color: #fff; }
+
+/* Barre de progression */
+.progress-container {
+    background: #eee;
+    border-radius: 10px;
+    height: 8px;
+    width: 100%;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #1976d2, #64b5f6);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.8s ease-in-out;
+}
+
+.time-val {
+    font-family: monospace;
+    font-weight: bold;
+    color: #d63031;
+    background: #fff0f0;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ffcccc;
+}
+
+/* ============================================================
+   6. OPTIMISATION IMPRESSION (PDF)
+   ============================================================ */
+@media print {
+    /* Masquer boutons et formulaires */
+    .no-print, form, .switch-btns, .btn, #header-stats { 
+        display: none !important; 
+    }
+
+    /* Cartes : s'affichent sur toute la largeur et pas de box-shadow */
+    .card { 
+        box-shadow: none !important; 
+        border: 1px solid #eee !important; 
+        width: 100% !important; 
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+    }
+
+    body { background: white; padding: 0; }
+    #stats-container { display: block; }
+
+    /* Afficher les deux charts même si cachés à l’écran */
+    #view1, #view2 { display: block !important; }
+}

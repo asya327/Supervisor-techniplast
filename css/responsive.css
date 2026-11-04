@@ -1,0 +1,109 @@
+/* ============================================================
+   FORCE RESPONSIVE - TECHNIPLAST (TOTAL)
+   ============================================================ */
+
+/* Cette règle s'active pour tous les écrans de moins de 1024px */
+@media screen and (max-width: 1024px) {
+
+    /* 1. EMPILEMENT GLOBAL (Dashboard, Historique, Stats) */
+    #dashboard, 
+    #stats-container, 
+    #main, 
+    .top-row, 
+    .container-grid {
+        display: flex !important;
+        flex-direction: column !important; /* FORCE LE PASSAGE À LA LIGNE */
+        height: auto !important;
+        gap: 20px !important;
+        padding: 10px !important;
+    }
+
+    /* 2. LARGEUR DES BLOCS (Prendre 100% de l'écran) */
+    #dashboard > div, 
+    .card, 
+    .panel, 
+    .chart-mini, 
+    .filter-side {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        height: auto !important;
+    }
+
+    /* 3. FIX DU GRAPHIQUE (Éviter qu'il disparaisse) */
+    .chart-mini {
+        height: 250px !important; /* Hauteur fixe minimale sur mobile */
+        min-height: 250px !important;
+    }
+
+    /* 4. HEADER (Logo, Titre et Nav l'un sous l'autre) */
+    header {
+        height: auto !important;
+        flex-direction: column !important;
+        padding: 15px !important;
+    }
+
+    header > div, #titre, #last, #nav {
+        width: 100% !important;
+        position: static !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+
+    #nav .nav-links {
+        display: flex !important;
+        flex-direction: row !important; /* Garde les liens côte à côte */
+        justify-content: space-around;
+        background: orange;
+        border-radius: 8px;
+        padding: 10px 0;
+    }
+
+    /* 5. TABLEAUX (Scroll horizontal si trop large) */
+    .table-wrapper {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .styled-table {
+        min-width: 550px !important; /* Empêche l'écrasement des colonnes */
+    }
+
+    /* 6. FORMULAIRES (Inputs tactiles) */
+    #formhist input, 
+    #formhist select, 
+    .btn-ok, 
+    .btn-reset, 
+    .btn-export {
+        width: 100% !important;
+        height: 45px !important; /* Plus facile à cliquer */
+        margin-bottom: 10px !important;
+        font-size: 16px !important; /* Empêche le zoom auto sur iPhone */
+    }
+
+    .btn-group {
+        flex-direction: column !important; /* Empile Filtrer et Reset */
+        gap: 0 !important;
+    }
+
+    /* 7. IFRAME (Ajustement de la fenêtre principale) */
+    iframe, #main-iframe {
+        height: 80vh !important;
+        width: 100% !important;
+        border: none !important;
+    }
+
+    /* 8. BOUTON DÉCONNEXION (Positionné proprement en bas) */
+    .nav-bottom {
+        position: relative !important;
+        margin: 20px auto !important;
+        width: 90% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
